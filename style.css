@@ -1,0 +1,317 @@
+body{
+    position: relative;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    background: #000;
+    overflow: hidden;
+}
+
+
+/*This will be the slider cover to open*/
+
+
+.overlay{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index:1;
+    opacity:0.5;
+    background: rgb(110, 243, 92);
+}
+.cover{
+    display: flex;
+    position:relative;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: end;
+    z-index: 2;
+    transition: height 1s ease;
+    
+}
+
+.cover img{
+    position:absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position:top;
+}
+
+.cover button{
+    z-index:2;
+}
+
+.content{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: yellow;
+}
+
+.content img{
+    display: none;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    height:50px;
+    width: 50px;
+    border-radius: 100%;
+}
+
+.happy-button{
+    height: 100px;
+    width: 100px;
+    object-fit: contain;
+    margin-bottom: 20px;
+    background: none;
+    z-index: 3;
+    cursor: pointer;
+}
+
+
+
+
+/*This will be our carousel*/
+
+.container{
+    overflow: hidden;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    transform-style: preserve-3d;
+    
+}
+
+.slider{
+    margin-top: 5rem;
+    height: 200px;
+    width: 250px;
+    transform-origin: center;
+    transform-style: preserve-3d;
+    animation: rotate 60s linear infinite;
+}
+
+@keyframes rotate {
+    0%{
+        transform: perspective(1000px) rotateY(0deg);
+    }
+    100%{
+        transform: perspective(1000px) rotateY(360deg);
+    }
+}
+
+.slider .slide{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height:100%; 
+    width:100%; 
+    transform-origin: center;
+    transform-style: preserve-3d;
+    object-fit: cover;
+}
+
+.slider .slide img{
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin:center;
+    transform-style: preserve-3d;
+    transform: rotateY(calc(var(--i) * 45deg)) translateZ(350px);
+}
+
+
+
+
+.container i {
+    position: absolute;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #fff,
+    0 0 20px #fff,
+    0 0 40px #fff,
+    0 0 80px #fff;
+    z-index: -1;
+    animation: animate 2s linear infinite;
+}
+
+@keyframes animate{
+    0%, 100%{
+        opacity: 0;
+    }
+    10%,90%{
+        opacity: 1;
+    }
+}
+
+/* For the doraemon animation*/
+
+.cartoon, .label{
+    position: absolute;
+    align-self:end;
+    height: calc(645px/2);
+}
+
+.cartoon{
+    left: 0;
+    width: calc(980px/4);
+    overflow: hidden;
+}
+
+@keyframes move-to-right {
+
+    from{
+        transform: translate(0px, 0px);
+    }
+    to{
+        transform: translate(993px, 0px);
+    }
+    
+ }
+
+.label{
+    top:60%;
+    width: 0px;
+    text-align: center;
+    white-space: nowrap;
+    align-self: flex-end;
+    z-index: -1;
+    overflow: hidden;
+
+}
+@keyframes reveal{
+    from {
+      width: 0;
+    }
+    to {
+      width:100%;
+    }
+ }
+
+
+.label h1{
+    text-shadow: 0 0 10px #fff, 
+    0 0 20px #fff, 
+    0 0 30px #e60000, 
+    0 0 40px #e60000, 
+    0 0 50px #e60000, 
+    0 0 60px #e60000, 
+    0 0 70px #e60000;
+
+}
+
+/* Make the animation move*/
+.anime{
+
+    animation: doraemon 0.5s steps(4) infinite;
+}
+
+@keyframes doraemon {
+    from {
+       transform: translate3d(0px,0,0);
+    }
+    to {
+       transform: translate3d(-100%,0,0);
+    }
+ }
+
+
+.gift{
+    height: calc(1800px/13);
+    width: 200px;
+    overflow: hidden;
+    margin: auto;
+}
+
+.gift img{
+
+    animation: gift 1s steps(13) infinite;
+}
+
+@keyframes gift {
+    from {
+        transform: translate3d(0,0,0);
+     }
+     to {
+        transform: translate3d(0%,-100%,0);
+     }
+  }
+  
+
+.modal{
+    position: absolute;
+    height: 0%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: height 1s ease;
+}
+
+.message{
+    margin: -2px;
+    padding: 0;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.overlay_message{
+    top: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0.7;
+    background-color:#000;
+    z-index: 1;
+
+
+}
+
+.message_content{
+    display: none;
+    position: absolute;
+    background: url('img/paper.jpg');
+    object-fit: contain;
+    height: 0px;
+    width: 400px;
+    z-index: 1;
+    padding: 20px;
+    align-self: center;
+    transition: height 1s ease;
+    animation: fadeIn 1s;
+}
+
+.close{
+    font-size: large;
+    font-weight: bolder;
+    position: absolute;
+    border: none;
+    cursor: pointer;
+    left: 400px;
+    background-color:transparent;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut{
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+    }
+}
+
